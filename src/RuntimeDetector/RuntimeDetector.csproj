@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net40;net462;net47;netstandard2.0;netcoreapp2.1</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<LangVersion>latest</LangVersion>
+		<Authors>Alexei Shcherbakov</Authors>
+		<Company />
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>runtimedetector.snk</AssemblyOriginatorKeyFile>
+		<Description>Library for detecting software &amp; hardware features</Description>
+	</PropertyGroup>
+</Project>
