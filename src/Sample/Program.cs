@@ -16,6 +16,7 @@ namespace Sample
 			if (RuntimeDetector.Processor.Information.IsX86())
 			{
 				Console.WriteLine("Intel/AMD/x86 family processor");
+				Console.WriteLine("{0}", RuntimeDetector.Processor.Intel.CpuInformation.GetManufacturerString());
 				Console.WriteLine("\tPopcnt:\t {0}", RuntimeDetector.Processor.Intel.CpuInformation.HasPopcnt);
 				Console.WriteLine("\tAVX:\t {0}", RuntimeDetector.Processor.Intel.CpuInformation.HasAvx);
 				Console.WriteLine("\tAVX2:\t {0}", RuntimeDetector.Processor.Intel.CpuInformation.HasAvx2);

@@ -14,19 +14,7 @@ namespace RuntimeDetector.Cuda
 
 		public CudaDynamicApi()
 		{
-			var ptr = NativeMethods.Kernel32.GetModuleHandle(DllNames.NvCuda);
-			// если библиотека загружена не нами, то её выгружать не надо
-
-			if (ptr == IntPtr.Zero)
-			{
-				_library = NativeMethods.Kernel32.LoadLibrary(DllNames.NvCuda);
-				_freeLibrary = true;
-			}
-			else
-			{
-				_library = ptr;
-				_freeLibrary = false;
-			}
+			_library = NativeMethods.Kernel32.LoadLibrary(DllNames.NvCuda);
 		}
 
 		~CudaDynamicApi()
@@ -42,10 +30,6 @@ namespace RuntimeDetector.Cuda
 
 		private void Dispose(bool disposing)
 		{
-			if (!_freeLibrary)
-			{
-				return;
-			}
 			var lib = Interlocked.Exchange(ref _library, IntPtr.Zero);
 			NativeMethods.Kernel32.FreeLibrary(lib);
 		}
@@ -87,11 +71,11 @@ namespace RuntimeDetector.Cuda
 			return ret == 0;
 		}
 
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		private delegate int CudaInitDelegate(int num);
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		private delegate int CudaDeviceGetCountDelegate(out int count);
-		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+		[UnmanagedFunctionPointer(CallingConvention.StdCall)]
 		private delegate int CudaDriverGetVersion(out int version);
 	}
 }

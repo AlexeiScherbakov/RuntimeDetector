@@ -45,11 +45,11 @@ namespace RuntimeDetector.Processor
 #endif
 			// old way
 			//https://docs.microsoft.com/ru-ru/windows/desktop/WinProg64/wow64-implementation-details#environment-variables
-			var arch = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE", EnvironmentVariableTarget.Machine);
+			var arch = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE", EnvironmentVariableTarget.Process);
 			_processArchitecture = GetEnvironmentVariableArchitecture(arch);
 			if (_processArchitecture == Architecture.X86)
 			{
-				var archWow = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432", EnvironmentVariableTarget.Machine);
+				var archWow = Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432", EnvironmentVariableTarget.Process);
 				if (string.IsNullOrWhiteSpace(archWow))
 				{
 					_osArchitecture = _processArchitecture;
