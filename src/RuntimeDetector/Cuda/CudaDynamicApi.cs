@@ -9,7 +9,6 @@ namespace RuntimeDetector.Cuda
 	public sealed class CudaDynamicApi
 		: IDisposable
 	{
-		private readonly bool _freeLibrary;
 		private IntPtr _library;
 
 		public CudaDynamicApi()
